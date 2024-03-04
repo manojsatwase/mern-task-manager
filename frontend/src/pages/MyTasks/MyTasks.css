@@ -1,0 +1,10 @@
+.accordion-header button{
+    width: 100%;
+    border: 0;
+    background: none;
+    text-align: left;
+}
+
+.accordion-header button:focus{
+    outline: 0;
+}

@@ -1,0 +1,6 @@
+.registrationContainer{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  position: relative;
+}
