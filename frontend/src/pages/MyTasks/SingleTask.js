@@ -27,7 +27,7 @@ const SingleTask = ({singleTask}) => {
         cursor:"pointer",
         alignSelf:"center",
         fontSize:18
-       }}>
+       }} className="mb-2">
          <Accordion.Header as={Card.Text} variant="link">
             Task : {title}
          </Accordion.Header>
