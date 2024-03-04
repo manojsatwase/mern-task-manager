@@ -5,9 +5,9 @@ POST REQUEST FOR RESISTRATION USER
 
 body => 
 {
-    "name":"renuka",
-    "email":"renuka@gmail.com",
-    "password":"renuka@123"
+    "name":"ranu",
+    "email":"ranu@gmail.com",
+    "password":"ranu@123"
 }
 
 --------------------------------------------
