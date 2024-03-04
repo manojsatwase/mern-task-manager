@@ -48,12 +48,11 @@ useEffect(() => {
          {error && <ErrorMessage variant="danger">
            {error}
           </ErrorMessage>}
-         {loading && <Loading/>}
-            {
-              reversedTasks?.map(task=>(
-                <SingleTask key={task._id} singleTask={task}/>
-              ))
-            }
+         {loading ? <Loading /> : (
+                  reversedTasks?.map(task=>(
+                    <SingleTask key={task._id} singleTask={task}/>
+                  ))
+         )}
     </MainScreen>
   )
 }
