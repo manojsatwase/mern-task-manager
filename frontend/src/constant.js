@@ -27,16 +27,5 @@ export const dateFormat = (date) => {
     return dueDate;
 }
 
-export const statusFields = ["pending", "progress", "complete"];
+export const statusFields = ['pending','progress','completed'];
 export const priorityFileds = ['high', 'medium', 'low', 'normal'];
-
-
-// const cloudName = "manoj-mern";
-// const apiKey = "782467115352928";
-// const apiSecret = "y1FWey27mdoIkfcK26dGeckX91o";
-
-// export {
-// cloudName,
-// apiKey,
-// apiSecret
-// }
