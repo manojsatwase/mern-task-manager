@@ -11,8 +11,10 @@ import Loading from '../../components/Loading';
 import { createUser } from '../../redux/slices/createUserSlice';
 
 import "./RegisterPage.css";
+import ShowHidePassword from '../../components/ShowPasswordFeature/ShowHidePassword';
 
 const RegisterPage = () => {
+  const [loader,setLoader] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     name: "",
@@ -47,6 +49,7 @@ const RegisterPage = () => {
       setUserData(prevState => ({ ...prevState, picMessage: "Please Select an Image" }));
       return;
     }
+    setLoader(true);
     setUserData(prevState => ({ ...prevState, picMessage: null }));
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
@@ -60,9 +63,11 @@ const RegisterPage = () => {
         .then((res) => res.json())
         .then((data) => {
           setUserData(prevState => ({ ...prevState, pic: data.url.toString() }));
+          setLoader(false);
         })
         .catch((err) => {
           console.log(err);
+          setLoader(false);
         });
     } else {
       setUserData(prevState => ({ ...prevState, picMessage: "Please Select an Image" }));
@@ -117,28 +122,37 @@ const RegisterPage = () => {
               name="email"
             />
           </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label className='my-2'>Password</Form.Label>
-            <Form.Control
-              type="password"
-              value={userData.password}
-              placeholder="Password"
-              onChange={handleChange}
-              name="password"
+          <Form.Group className="mb-3 password" controlId="formBasicPassword">
+             <Form.Label className='my-2'>Password</Form.Label>
+              <ShowHidePassword
+              // title="Password"
+              inputComponent={
+                <Form.Control
+                  type="password" 
+                  placeholder="Password" 
+                  value={userData.password}
+                  onChange={handleChange}
+                  name="password"
+                />
+              }
             />
-          </Form.Group>
-
-          <Form.Group controlId="confirmPassword">
-            <Form.Label className='my-2'>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              value={userData.confirmPassword}
-              placeholder="Confirm Password"
-              onChange={handleChange}
-              name="confirmPassword"
+        </Form.Group>
+        <Form.Group className="mb-3 password" controlId="formBasicPassword">
+             <Form.Label className='my-2'>Confirm Password</Form.Label>
+              <ShowHidePassword
+              // title="Password"
+              inputComponent={
+                <Form.Control
+                  type="password" 
+                  placeholder="Confirm Password" 
+                  value={userData.confirmPassword}
+                  onChange={handleChange}
+                  name="confirmPassword"
+                />
+              }
             />
-          </Form.Group>
+        </Form.Group>
+  
           {userData.picMessage && (
             <ErrorMessage variant='danger'>{userData.picMessage}</ErrorMessage>
           )}
@@ -151,8 +165,8 @@ const RegisterPage = () => {
               label="Upload Profile Picture"
             />
           </Form.Group>
-          <Button variant="primary" type="submit" className='my-3'>
-            Register
+          <Button variant="primary" type="submit" className='my-3' disabled={loader === true}>
+            { loader ? "Loading..." : "Register"}
           </Button>
         </Form>
         <Row>
