@@ -8,8 +8,10 @@ import { Button } from 'react-bootstrap';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
 import { useCallAPI } from '../../customHooks/useCallAPI';
+import ShowHidePassword from '../../components/ShowPasswordFeature/ShowHidePassword';
 
 import "./LoginPage.css";
+
 
 const LoginPage = () => {
   const [email,setEmail] = useState("");
@@ -55,14 +57,19 @@ if(loading) return <Loading/>
          onChange={onChangeEmail}
          />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control 
-        type="password" 
-        placeholder="Password" 
-        value={password}
-        onChange={onChangePassword}
-        />
+      <Form.Group className="mb-3 password" controlId="formBasicPassword">
+      <Form.Label>Password</Form.Label>
+      <ShowHidePassword
+              title="Password"
+              inputComponent={
+                <Form.Control
+                  type="password" 
+                  placeholder="Password" 
+                  value={password}
+                  onChange={onChangePassword}
+                />
+              }
+            />
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit
