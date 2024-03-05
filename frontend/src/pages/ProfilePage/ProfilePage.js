@@ -161,7 +161,7 @@ const ProfilePage = () => {
                   accept="image/png, image/jpeg"
                   />  
               </Form.Group>
-              <Button type="submit" variant="primary">
+              <Button type="submit" variant="primary" disabled={loader === true}>
                  {loader ? "Loading..." : "Update"}
               </Button>
             </Form>
