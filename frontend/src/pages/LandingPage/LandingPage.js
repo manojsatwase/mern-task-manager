@@ -26,8 +26,8 @@ const LandingPage = () => {
             <Row>
                 <div className="intro__text">
                     <div>
-                        <h1 className="title">Welcome to Note Zipper</h1>
-                        <p className="subtitle">One Safe place for all your Notes.</p>
+                        <h1 className="title">Welcome to Task Manager</h1>
+                        <p className="subtitle">One Safe place for all your Tasks.</p>
                     </div>
                     <div className="button__container">
                         <Link to="/login">
