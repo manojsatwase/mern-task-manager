@@ -6,9 +6,8 @@ import { useSelector } from "react-redux";
 import MainScreen from "../../components/MainScreen/MainScreen";
 import { capitalize } from "../../constant";
 import { useCallAPI } from "../../customHooks/useCallAPI";
-import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
-import SingleTask from "./SingleTask";
+import PaginationComponent from "../Pagination/PaginationPage";
 
 import "./MyTasks.css";
 
@@ -18,11 +17,11 @@ const MyTasks = () => {
   const searchText = useSelector(state => state.searchText.search);
  const navigate = useNavigate();
 
-const {loading,error,fetchTasks,} = useCallAPI();
+const {loading,error,ids,fetchTasks,} = useCallAPI();
 const tasks = useSelector(state=>state.createTask?.tasks);
 useEffect(() => {
   fetchTasks();
-}, []); // Only fetch notes when createnote changes
+}, [ids]); // Only fetch notes when createnote changes
 
 useEffect(() => {
   if (!userInfo) {
@@ -48,11 +47,7 @@ useEffect(() => {
          {error && <ErrorMessage variant="danger">
            {error}
           </ErrorMessage>}
-         {loading ? <Loading /> : (
-                  reversedTasks?.map(task=>(
-                    <SingleTask key={task._id} singleTask={task}/>
-                  ))
-         )}
+        <PaginationComponent tasks = {reversedTasks} loading={loading}/>
     </MainScreen>
   )
 }
