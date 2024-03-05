@@ -13,7 +13,7 @@ export const useCallAPI = () => {
   const [ids,setIds] = useState("");
   const userInfo = useSelector((state) => state.createUser?.userInfo);
   const dispatch = useDispatch();
-
+  
   const options = {
     headers: {
       "Content-Type": "application/json",
@@ -21,15 +21,27 @@ export const useCallAPI = () => {
     },
   }
 
+  // Cache object to store API responses
+  const cache = {};
+
   const callAPI = async (method, url, data = null) => {
     try {
-      setLoading(true);  
-      const response = ['get','delete'].includes(method?.toLowerCase())
-       ? await axios[method?.toLowerCase()](url,options) 
-       : await axios[method?.toLowerCase()](url,data,options);
-  
+      setLoading(true);
+
+      // Check if the response is cached
+      if (cache.hasOwnProperty(url)) {
+        setLoading(false);
+        return cache[url];
+      }
+
+      const response =
+        ["get", "delete"].includes(method?.toLowerCase())
+          ? await axios[method?.toLowerCase()](url, options)
+          : await axios[method?.toLowerCase()](url, data, options);
+
       setLoading(false);
       setSuccess(true);
+      cache[url] = response.data; // Store response in cache
       return response.data;
     } catch (error) {
       setLoading(false);
