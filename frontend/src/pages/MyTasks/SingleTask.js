@@ -18,8 +18,8 @@ const SingleTask = ({singleTask}) => {
   return (
     <Accordion key={_id}>
     <Accordion.Item eventKey="0">
-   <Card style={{margin:10}}>
-    <Card.Header style={{display:'flex',justifyContent:"space-evenly"}}>
+      <Card style={{margin:10}}>
+      <Card.Header style={{display:'flex',justifyContent:"space-evenly"}}>
        <span style={{
         color:"black",
         textDecoration:"none",
@@ -28,13 +28,17 @@ const SingleTask = ({singleTask}) => {
         alignSelf:"center",
         fontSize:18,
         marginBottom:"13px"
-       }} >
+       }}>
          <Accordion.Header as={Card.Text} variant="link">
             Task : {title}
          </Accordion.Header>
         </span>
         <div style={{marginRight:"5rem",display:"flex"}}>
-         <h5 className={`mr-5 mt-2 ${singleTask.status ==='complete'?'text-success' : 'text-warning' }`}><span className="text-dark">Status :</span> {capitalize(status)}</h5>
+         <h5 className={`mr-5 mt-2 ${
+          singleTask.status ==='completed' ? 'text-success': 
+          singleTask.status ==='progress' ? 'text-primary' : 'text-warning' }`}>
+          <span className="text-dark">Status :</span> {capitalize(status)}
+          </h5>
          <h5 className="mr-5 mt-2">DueDate : {dueDate?.substring(0,10)}</h5>
          <h5 className="mr-5 mt-2">Priority: {capitalize(priority)}</h5>
         </div>
