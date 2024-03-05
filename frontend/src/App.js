@@ -9,6 +9,8 @@ import CreateTask from "./pages/CreateTask/CreateTask";
 import UpdateTask from "./pages/UpdateTask/UpdateTask";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
+import "./App.css";
+
 const AppLayout = () => {
   return (
    <>
